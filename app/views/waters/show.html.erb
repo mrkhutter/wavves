@@ -9,6 +9,15 @@
   <strong>Intensity:</strong>
   <%= @water.intensity %>
 </p>
+<% if @water.images.attached? %>
+<p>
+  <strong>Images:</strong>
+  <br>
+  <% @water.images.each do |image| %>
+    <%= image_tag(image.variant(resize: "500x500")) %>
+  <% end %>
+</p>
+<% end %>
 
 <%= link_to 'Edit', edit_water_path(@water) %> |
 <%= link_to 'Back', waters_path %>

@@ -41,7 +41,8 @@ class WatersController < ApplicationController
   # PATCH/PUT /waters/1.json
   def update
     respond_to do |format|
-      if @water.update(water_params)
+      @water.images.attach(water_params[:images])
+      if @water.update(water_update_params)
         format.html { redirect_to @water, notice: "Water was successfully updated." }
         format.json { render :show, status: :ok, location: @water }
       else
@@ -71,5 +72,9 @@ class WatersController < ApplicationController
   # Only allow a list of trusted parameters through.
   def water_params
     params.require(:water).permit(:feeling, :intensity, images: [])
+  end
+
+  def water_update_params
+    params.require(:water).permit(:feeling, :intensity)
   end
 end

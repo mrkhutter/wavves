@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Feeling:</strong>
+  <%= @water.feeling %>
+</p>
+
+<p>
+  <strong>Intensity:</strong>
+  <%= @water.intensity %>
+</p>
+
+<%= link_to 'Edit', edit_water_path(@water) %> |
+<%= link_to 'Back', waters_path %>

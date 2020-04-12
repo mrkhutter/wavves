@@ -14,7 +14,7 @@
   <strong>Images:</strong>
   <br>
   <% @water.images.each do |image| %>
-    <%= image_tag(image) %>
+    <%= image_tag(image.variant(resize: "300x300")) %>
   <% end %>
 </p>
 <% end %>

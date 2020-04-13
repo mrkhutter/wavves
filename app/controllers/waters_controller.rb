@@ -28,6 +28,7 @@ class WatersController < ApplicationController
 
     respond_to do |format|
       if @water.save
+        ImageProcessor.new(@water).call
         format.html { redirect_to @water, notice: "Water was successfully created." }
         format.json { render :show, status: :created, location: @water }
       else
@@ -43,7 +44,7 @@ class WatersController < ApplicationController
     respond_to do |format|
       @water.images.attach(water_params[:images])
       if @water.update(water_update_params)
-        format.html { redirect_to @water, notice: "Water was successfully updated." }
+        format.html { redirect_to :index, notice: "Water was successfully updated." }
         format.json { render :show, status: :ok, location: @water }
       else
         format.html { render :edit }
@@ -64,9 +65,8 @@ class WatersController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_water
-    @water = Water.find(params[:id])
+    @water = Water.with_attached_images.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

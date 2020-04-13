@@ -11,10 +11,24 @@
 </p>
 <% if @water.images.attached? %>
 <p>
-  <strong>Images:</strong>
+  <strong>Thumbnail Images:</strong>
   <br>
   <% @water.images.each do |image| %>
     <%= image_tag(image.variant(resize: "300x300")) %>
+  <% end %>
+</p>
+<p>
+  <strong>Bigger Images:</strong>
+  <br>
+  <% @water.images.each do |image| %>
+    <%= image_tag(image.variant(resize: "500x500")) %>
+  <% end %>
+</p>
+<p>
+  <strong>Ridiculously Big Images:</strong>
+  <br>
+  <% @water.images.each do |image| %>
+    <%= image_tag(image.variant(resize: "2400x2400")) %>
   <% end %>
 </p>
 <% end %>

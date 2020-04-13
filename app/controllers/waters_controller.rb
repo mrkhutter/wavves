@@ -41,9 +41,9 @@ class WatersController < ApplicationController
   # PATCH/PUT /waters/1.json
   def update
     respond_to do |format|
-      @water.images.attach(water_params[:images])
+      @water.images.attach(water_params[:images]) if water_params[:images].present?
       if @water.update(water_update_params)
-        format.html { redirect_to :index, notice: "Water was successfully updated." }
+        format.html { redirect_to waters_path, notice: "Water was successfully updated." }
         format.json { render :show, status: :ok, location: @water }
       else
         format.html { render :edit }
